@@ -29,6 +29,7 @@
             background-color: var(--bg-light);
             color: var(--text-dark);
             line-height: 1.6;
+            display: flex;
         }
 
         h1, h2, h3, h4 {
@@ -41,7 +42,98 @@
             padding: 0 20px;
         }
 
-        /* ─── HEADER / NAV ─── */
+        /* ─── SIDEBAR NAVIGATION ─── */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--bg-dark);
+            color: white;
+            padding: 40px 20px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(232, 160, 32, 0.3);
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--bg-dark);
+            font-family: 'DM Serif Display', serif;
+        }
+
+        .sidebar-header h1 {
+            font-size: 1.5em;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .sidebar-header .subtitle {
+            font-size: 0.9em;
+            color: #B0B0B0;
+            line-height: 1.4;
+        }
+
+        .sidebar-header .status {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg-dark);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        /* ─── SIDEBAR NAVIGATION LINKS ─── */
+        .sidebar-nav {
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            margin-bottom: 0;
+        }
+
+        .sidebar-nav a {
+            display: block;
+            color: #B0B0B0;
+            text-decoration: none;
+            padding: 12px 16px;
+            border-left: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-size: 0.95em;
+        }
+
+        .sidebar-nav a:hover, .sidebar-nav a.active {
+            color: var(--accent);
+            border-left-color: var(--accent);
+            background: rgba(232, 160, 32, 0.1);
+        }
+
+        /* ─── MAIN CONTENT ─── */
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+            width: calc(100% - 280px);
+        }
+
+        /* ─── HEADER ─── */
         header {
             background: var(--bg-dark);
             color: white;
@@ -67,21 +159,6 @@
             z-index: 2;
         }
 
-        .avatar {
-            width: 80px;
-            height: 80px;
-            background: var(--accent);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            font-weight: bold;
-            color: var(--bg-dark);
-            font-family: 'DM Serif Display', serif;
-        }
-
         header h1 {
             font-size: 2.5em;
             margin-bottom: 10px;
@@ -104,31 +181,6 @@
             font-weight: 600;
         }
 
-        /* ─── NAVIGATION ─── */
-        nav {
-            background: var(--bg-dark);
-            padding: 0 20px;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0;
-            border-bottom: 1px solid rgba(232, 160, 32, 0.2);
-        }
-
-        nav a {
-            color: #B0B0B0;
-            padding: 12px 20px;
-            text-decoration: none;
-            font-size: 0.95em;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--accent);
-            border-bottom-color: var(--accent);
-        }
-
         /* ─── SECTIONS ─── */
         section {
             padding: 60px 20px;
@@ -144,6 +196,7 @@
 
         .section-header {
             margin-bottom: 40px;
+            text-align: left;
         }
 
         .section-label {
@@ -154,12 +207,14 @@
             color: var(--accent);
             text-transform: uppercase;
             margin-bottom: 10px;
+            text-align: left;
         }
 
         .section-header h2 {
             font-size: 2.5em;
             color: var(--bg-dark);
             margin-bottom: 15px;
+            text-align: left;
         }
 
         .amber-rule {
@@ -643,6 +698,33 @@
 
         /* ─── RESPONSIVE ─── */
         @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                position: static;
+                width: 100%;
+                height: auto;
+                padding: 20px;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+
+            .sidebar-header {
+                margin-bottom: 20px;
+                padding-bottom: 20px;
+            }
+
+            .sidebar-nav a {
+                display: inline-block;
+                padding: 8px 12px;
+                margin-right: 10px;
+            }
+
             header h1 {
                 font-size: 2em;
             }
@@ -655,15 +737,6 @@
                 font-size: 1.8em;
             }
 
-            nav {
-                gap: 0;
-            }
-
-            nav a {
-                padding: 10px 15px;
-                font-size: 0.9em;
-            }
-
             .stats-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -674,14 +747,6 @@
 
             .button-group .btn {
                 width: 100%;
-            }
-
-            .experience-header {
-                flex-direction: column;
-            }
-
-            .education-item {
-                flex-direction: column;
             }
         }
 
@@ -714,461 +779,474 @@
     </style>
 </head>
 <body>
-    <!-- HEADER -->
-    <header>
-        <div class="content">
+    <!-- SIDEBAR NAVIGATION -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
             <div class="avatar">YN</div>
             <h1>Your Name</h1>
-            <p class="subtitle">M&E Specialist · Data Analyst</p>
+            <p class="subtitle">M&E Specialist<br>Data Analyst</p>
             <span class="status">Open to Work</span>
         </div>
-    </header>
 
-    <!-- NAVIGATION -->
-    <nav>
-        <a href="#hero" class="nav-link active">About</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#education" class="nav-link">Education</a>
-        <a href="#contact" class="nav-link">Contact</a>
-    </nav>
+        <nav>
+            <ul class="sidebar-nav">
+                <li><a href="#hero" class="nav-link active">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </nav>
+    </aside>
 
-    <!-- HERO -->
-    <section id="hero">
-        <div class="container">
-            <h1>Measuring Impact,<br><em>Telling Stories with Data</em></h1>
-            <p>6+ years in Monitoring & Evaluation across NGO programs in health, WASH, education, and livelihoods. Now expanding into data analysis to turn field evidence into deeper insights.</p>
-            <div class="button-group">
-                <a href="#experience" class="btn btn-primary">View Experience</a>
-                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <!-- HEADER -->
+        <header>
+            <div class="content">
+                <h1>Your Name</h1>
+                <p class="subtitle">M&E Specialist · Data Analyst</p>
+                <span class="status">Open to Work</span>
             </div>
-        </div>
-    </section>
+        </header>
 
-    <!-- STATS -->
-    <section>
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">6+</div>
-                    <div class="stat-label">Years in NGO Sector</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">12+</div>
-                    <div class="stat-label">Projects Evaluated</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">5</div>
-                    <div class="stat-label">Countries Worked In</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">50K+</div>
-                    <div class="stat-label">Beneficiaries Reached</div>
+        <!-- HERO -->
+        <section id="hero">
+            <div class="container">
+                <h1>Measuring Impact,<br><em>Telling Stories with Data</em></h1>
+                <p>6+ years in Monitoring & Evaluation across NGO programs in health, WASH, education, and livelihoods. Now expanding into data analysis to turn field evidence into deeper insights.</p>
+                <div class="button-group">
+                    <a href="#experience" class="btn btn-primary">View Experience</a>
+                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- EXPERIENCE -->
-    <section id="experience">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">02 · Work History</p>
-                <h2>Professional Experience</h2>
-                <div class="amber-rule"></div>
-            </div>
-
-            <div class="experience-item reveal-on-scroll">
-                <div class="experience-header">
-                    <div>
-                        <h3>Senior M&E Officer</h3>
-                        <p class="experience-org">International Development NGO</p>
+        <!-- STATS -->
+        <section>
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-number">6+</div>
+                        <div class="stat-label">Years in NGO Sector</div>
                     </div>
-                    <span class="experience-period">2023 – Present</span>
-                </div>
-                <p class="experience-description">Lead the design and implementation of monitoring and evaluation frameworks for multi-country health and livelihood programs. Manage data collection systems using KoBoToolbox and ODK, and produce quarterly impact reports for donor reporting (USAID, EU).</p>
-                <ul class="highlights">
-                    <li>Designed a real-time dashboard tracking 8 KPIs across 3 countries</li>
-                    <li>Trained 40+ field staff on data collection protocols</li>
-                    <li>Reduced data entry errors by 35% through process redesign</li>
-                </ul>
-                <div class="tags">
-                    <span class="tag">M&E Framework</span>
-                    <span class="tag">KoBoToolbox</span>
-                    <span class="tag">Power BI</span>
-                    <span class="tag">Donor Reporting</span>
-                </div>
-            </div>
-
-            <div class="experience-item reveal-on-scroll">
-                <div class="experience-header">
-                    <div>
-                        <h3>M&E Officer</h3>
-                        <p class="experience-org">Community Health NGO</p>
+                    <div class="stat-item">
+                        <div class="stat-number">12+</div>
+                        <div class="stat-label">Projects Evaluated</div>
                     </div>
-                    <span class="experience-period">2021 – 2023</span>
-                </div>
-                <p class="experience-description">Developed and managed MEAL systems for a WASH and nutrition program covering 120 villages. Conducted baseline, midline, and endline surveys. Produced evidence-based learning reports to inform program adaptation.</p>
-                <ul class="highlights">
-                    <li>Managed a beneficiary database of 15,000+ records</li>
-                    <li>Conducted 3 evaluation cycles (baseline, midline, endline)</li>
-                    <li>Authored 6 donor reports with 100% on-time submission</li>
-                </ul>
-                <div class="tags">
-                    <span class="tag">MEAL</span>
-                    <span class="tag">WASH</span>
-                    <span class="tag">Survey Design</span>
-                    <span class="tag">ODK</span>
-                </div>
-            </div>
-
-            <div class="experience-item reveal-on-scroll">
-                <div class="experience-header">
-                    <div>
-                        <h3>M&E Assistant</h3>
-                        <p class="experience-org">Education & Youth Development NGO</p>
+                    <div class="stat-item">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">Countries Worked In</div>
                     </div>
-                    <span class="experience-period">2019 – 2021</span>
-                </div>
-                <p class="experience-description">Supported the M&E team in data collection, cleaning, and reporting for education programs. Assisted in developing logical frameworks and indicator tracking matrices for project proposals.</p>
-                <ul class="highlights">
-                    <li>Supported data collection for 5,000+ student beneficiaries</li>
-                    <li>Built indicator tracking spreadsheets used across 4 projects</li>
-                    <li>Contributed to 3 successful grant proposals</li>
-                </ul>
-                <div class="tags">
-                    <span class="tag">LogFrame</span>
-                    <span class="tag">Data Collection</span>
-                    <span class="tag">Reporting</span>
-                    <span class="tag">Excel</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">03 · Competencies</p>
-                <h2>Skills & Tools</h2>
-                <div class="amber-rule"></div>
-            </div>
-
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>M&E & MEAL</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>M&E Framework Design</span>
-                            <span class="skill-level">95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Logical Framework (LogFrame)</span>
-                            <span class="skill-level">92%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 92%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Baseline / Endline Surveys</span>
-                            <span class="skill-level">90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>KoBoToolbox / ODK</span>
-                            <span class="skill-level">88%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 88%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Donor Reporting</span>
-                            <span class="skill-level">85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 85%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Data Analysis <span class="education-badge">Learning</span></h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Microsoft Excel (Advanced)</span>
-                            <span class="skill-level">88%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 88%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Power BI</span>
-                            <span class="skill-level">72%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 72%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Python (Pandas, Matplotlib)</span>
-                            <span class="skill-level">55%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 55%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>SQL Basics</span>
-                            <span class="skill-level">50%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 50%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Tableau</span>
-                            <span class="skill-level">45%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 45%"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>Soft Skills</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Report Writing</span>
-                            <span class="skill-level">95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Stakeholder Engagement</span>
-                            <span class="skill-level">90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Training & Capacity Building</span>
-                            <span class="skill-level">85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Cross-cultural Communication</span>
-                            <span class="skill-level">88%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-fill" style="width: 88%"></div>
-                        </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Beneficiaries Reached</div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- PROJECTS -->
-    <section id="projects">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">04 · Portfolio</p>
-                <h2>Key Projects</h2>
-                <div class="amber-rule"></div>
+        <!-- EXPERIENCE -->
+        <section id="experience">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-label">02 · Work History</p>
+                    <h2>Professional Experience</h2>
+                    <div class="amber-rule"></div>
+                </div>
+
+                <div class="experience-item reveal-on-scroll">
+                    <div class="experience-header">
+                        <div>
+                            <h3>Senior M&E Officer</h3>
+                            <p class="experience-org">International Development NGO</p>
+                        </div>
+                        <span class="experience-period">2023 – Present</span>
+                    </div>
+                    <p class="experience-description">Lead the design and implementation of monitoring and evaluation frameworks for multi-country health and livelihood programs. Manage data collection systems using KoBoToolbox and ODK, and produce quarterly impact reports for donor reporting (USAID, EU).</p>
+                    <ul class="highlights">
+                        <li>Designed a real-time dashboard tracking 8 KPIs across 3 countries</li>
+                        <li>Trained 40+ field staff on data collection protocols</li>
+                        <li>Reduced data entry errors by 35% through process redesign</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">M&E Framework</span>
+                        <span class="tag">KoBoToolbox</span>
+                        <span class="tag">Power BI</span>
+                        <span class="tag">Donor Reporting</span>
+                    </div>
+                </div>
+
+                <div class="experience-item reveal-on-scroll">
+                    <div class="experience-header">
+                        <div>
+                            <h3>M&E Officer</h3>
+                            <p class="experience-org">Community Health NGO</p>
+                        </div>
+                        <span class="experience-period">2021 – 2023</span>
+                    </div>
+                    <p class="experience-description">Developed and managed MEAL systems for a WASH and nutrition program covering 120 villages. Conducted baseline, midline, and endline surveys. Produced evidence-based learning reports to inform program adaptation.</p>
+                    <ul class="highlights">
+                        <li>Managed a beneficiary database of 15,000+ records</li>
+                        <li>Conducted 3 evaluation cycles (baseline, midline, endline)</li>
+                        <li>Authored 6 donor reports with 100% on-time submission</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">MEAL</span>
+                        <span class="tag">WASH</span>
+                        <span class="tag">Survey Design</span>
+                        <span class="tag">ODK</span>
+                    </div>
+                </div>
+
+                <div class="experience-item reveal-on-scroll">
+                    <div class="experience-header">
+                        <div>
+                            <h3>M&E Assistant</h3>
+                            <p class="experience-org">Education & Youth Development NGO</p>
+                        </div>
+                        <span class="experience-period">2019 – 2021</span>
+                    </div>
+                    <p class="experience-description">Supported the M&E team in data collection, cleaning, and reporting for education programs. Assisted in developing logical frameworks and indicator tracking matrices for project proposals.</p>
+                    <ul class="highlights">
+                        <li>Supported data collection for 5,000+ student beneficiaries</li>
+                        <li>Built indicator tracking spreadsheets used across 4 projects</li>
+                        <li>Contributed to 3 successful grant proposals</li>
+                    </ul>
+                    <div class="tags">
+                        <span class="tag">LogFrame</span>
+                        <span class="tag">Data Collection</span>
+                        <span class="tag">Reporting</span>
+                        <span class="tag">Excel</span>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="projects-grid">
-                <div class="project-card reveal-on-scroll">
-                    <div class="project-header">
-                        <div class="project-icon">📊</div>
-                        <div class="project-meta">
-                            <div class="project-year">2024</div>
-                            <div class="project-type">Data Visualization</div>
+        <!-- SKILLS -->
+        <section id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-label">03 · Competencies</p>
+                    <h2>Skills & Tools</h2>
+                    <div class="amber-rule"></div>
+                </div>
+
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>M&E & MEAL</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>M&E Framework Design</span>
+                                <span class="skill-level">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Logical Framework (LogFrame)</span>
+                                <span class="skill-level">92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 92%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Baseline / Endline Surveys</span>
+                                <span class="skill-level">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>KoBoToolbox / ODK</span>
+                                <span class="skill-level">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Donor Reporting</span>
+                                <span class="skill-level">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 85%"></div>
+                            </div>
                         </div>
                     </div>
-                    <h3>WASH Impact Dashboard</h3>
-                    <p class="project-description">Built an interactive Power BI dashboard tracking water, sanitation, and hygiene indicators across 3 provinces. Integrated KoBoToolbox data feeds for near-real-time monitoring.</p>
-                    <p class="project-metrics">15,000 beneficiaries · 3 provinces · 8 KPIs</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Power BI</span>
-                        <span class="project-tag">KoBoToolbox</span>
-                        <span class="project-tag">WASH</span>
-                        <span class="project-tag">Dashboard</span>
-                    </div>
-                </div>
 
-                <div class="project-card reveal-on-scroll">
-                    <div class="project-header">
-                        <div class="project-icon">📈</div>
-                        <div class="project-meta">
-                            <div class="project-year">2023</div>
-                            <div class="project-type">M&E Evaluation</div>
+                    <div class="skill-category">
+                        <h3>Data Analysis <span class="education-badge">Learning</span></h3>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Microsoft Excel (Advanced)</span>
+                                <span class="skill-level">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 88%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Power BI</span>
+                                <span class="skill-level">72%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 72%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Python (Pandas, Matplotlib)</span>
+                                <span class="skill-level">55%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 55%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>SQL Basics</span>
+                                <span class="skill-level">50%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 50%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Tableau</span>
+                                <span class="skill-level">45%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 45%"></div>
+                            </div>
                         </div>
                     </div>
-                    <h3>Nutrition Program Endline Evaluation</h3>
-                    <p class="project-description">Led the endline evaluation of a 2-year nutrition program, including survey design, data collection coordination, statistical analysis, and final report for EU donor.</p>
-                    <p class="project-metrics">2,400 households surveyed · 12 indicators</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Survey Design</span>
-                        <span class="project-tag">SPSS</span>
-                        <span class="project-tag">Evaluation</span>
-                        <span class="project-tag">EU Reporting</span>
-                    </div>
-                </div>
 
-                <div class="project-card reveal-on-scroll">
-                    <div class="project-header">
-                        <div class="project-icon">🗄️</div>
-                        <div class="project-meta">
-                            <div class="project-year">2022</div>
-                            <div class="project-type">Data Management</div>
+                    <div class="skill-category">
+                        <h3>Soft Skills</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Report Writing</span>
+                                <span class="skill-level">95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 95%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Stakeholder Engagement</span>
+                                <span class="skill-level">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Training & Capacity Building</span>
+                                <span class="skill-level">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Cross-cultural Communication</span>
+                                <span class="skill-level">88%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-fill" style="width: 88%"></div>
+                            </div>
                         </div>
                     </div>
-                    <h3>Beneficiary Database Redesign</h3>
-                    <p class="project-description">Redesigned the organization's beneficiary tracking system using Excel and Power Query, reducing duplicate entries by 40% and enabling cross-program analysis.</p>
-                    <p class="project-metrics">15,000+ records · 40% error reduction</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Excel</span>
-                        <span class="project-tag">Power Query</span>
-                        <span class="project-tag">Data Cleaning</span>
-                        <span class="project-tag">Database</span>
-                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-label">04 · Portfolio</p>
+                    <h2>Key Projects</h2>
+                    <div class="amber-rule"></div>
                 </div>
 
-                <div class="project-card reveal-on-scroll">
-                    <div class="project-header">
-                        <div class="project-icon">📚</div>
-                        <div class="project-meta">
-                            <div class="project-year">2021</div>
-                            <div class="project-type">Research & Analysis</div>
+                <div class="projects-grid">
+                    <div class="project-card reveal-on-scroll">
+                        <div class="project-header">
+                            <div class="project-icon">📊</div>
+                            <div class="project-meta">
+                                <div class="project-year">2024</div>
+                                <div class="project-type">Data Visualization</div>
+                            </div>
+                        </div>
+                        <h3>WASH Impact Dashboard</h3>
+                        <p class="project-description">Built an interactive Power BI dashboard tracking water, sanitation, and hygiene indicators across 3 provinces. Integrated KoBoToolbox data feeds for near-real-time monitoring.</p>
+                        <p class="project-metrics">15,000 beneficiaries · 3 provinces · 8 KPIs</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Power BI</span>
+                            <span class="project-tag">KoBoToolbox</span>
+                            <span class="project-tag">WASH</span>
+                            <span class="project-tag">Dashboard</span>
                         </div>
                     </div>
-                    <h3>Youth Education Impact Study</h3>
-                    <p class="project-description">Contributed to a mixed-methods impact study examining learning outcomes for out-of-school youth. Managed quantitative data collection and produced data visualizations for the final report.</p>
-                    <p class="project-metrics">5,000 students · 4 districts</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Mixed Methods</span>
-                        <span class="project-tag">Data Collection</span>
-                        <span class="project-tag">Visualization</span>
+
+                    <div class="project-card reveal-on-scroll">
+                        <div class="project-header">
+                            <div class="project-icon">📈</div>
+                            <div class="project-meta">
+                                <div class="project-year">2023</div>
+                                <div class="project-type">M&E Evaluation</div>
+                            </div>
+                        </div>
+                        <h3>Nutrition Program Endline Evaluation</h3>
+                        <p class="project-description">Led the endline evaluation of a 2-year nutrition program, including survey design, data collection coordination, statistical analysis, and final report for EU donor.</p>
+                        <p class="project-metrics">2,400 households surveyed · 12 indicators</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Survey Design</span>
+                            <span class="project-tag">SPSS</span>
+                            <span class="project-tag">Evaluation</span>
+                            <span class="project-tag">EU Reporting</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card reveal-on-scroll">
+                        <div class="project-header">
+                            <div class="project-icon">🗄️</div>
+                            <div class="project-meta">
+                                <div class="project-year">2022</div>
+                                <div class="project-type">Data Management</div>
+                            </div>
+                        </div>
+                        <h3>Beneficiary Database Redesign</h3>
+                        <p class="project-description">Redesigned the organization's beneficiary tracking system using Excel and Power Query, reducing duplicate entries by 40% and enabling cross-program analysis.</p>
+                        <p class="project-metrics">15,000+ records · 40% error reduction</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Excel</span>
+                            <span class="project-tag">Power Query</span>
+                            <span class="project-tag">Data Cleaning</span>
+                            <span class="project-tag">Database</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card reveal-on-scroll">
+                        <div class="project-header">
+                            <div class="project-icon">📚</div>
+                            <div class="project-meta">
+                                <div class="project-year">2021</div>
+                                <div class="project-type">Research & Analysis</div>
+                            </div>
+                        </div>
+                        <h3>Youth Education Impact Study</h3>
+                        <p class="project-description">Contributed to a mixed-methods impact study examining learning outcomes for out-of-school youth. Managed quantitative data collection and produced data visualizations for the final report.</p>
+                        <p class="project-metrics">5,000 students · 4 districts</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Mixed Methods</span>
+                            <span class="project-tag">Data Collection</span>
+                            <span class="project-tag">Visualization</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- EDUCATION -->
-    <section id="education">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">05 · Academic Background</p>
-                <h2>Education & Certifications</h2>
-                <div class="amber-rule"></div>
-            </div>
-
-            <div class="education-item reveal-on-scroll">
-                <div class="education-icon">🎓</div>
-                <div class="education-content">
-                    <h3>Certificate in Data Analysis <span class="education-badge">Current</span></h3>
-                    <p class="education-institution">Online Learning Platform</p>
-                    <p class="education-period">2024 – Present</p>
-                    <p class="education-note">Currently enrolled — Python, SQL, Tableau</p>
-                </div>
-            </div>
-
-            <div class="education-item reveal-on-scroll">
-                <div class="education-icon">🎓</div>
-                <div class="education-content">
-                    <h3>Master of Development Studies</h3>
-                    <p class="education-institution">University (Your Country)</p>
-                    <p class="education-period">2017 – 2019</p>
-                    <p class="education-note">Thesis: Evaluating Community-Based Health Interventions</p>
-                </div>
-            </div>
-
-            <div class="education-item reveal-on-scroll">
-                <div class="education-icon">🎓</div>
-                <div class="education-content">
-                    <h3>Bachelor of Social Sciences</h3>
-                    <p class="education-institution">University (Your Country)</p>
-                    <p class="education-period">2013 – 2017</p>
-                    <p class="education-note">Major: Sociology | Minor: Statistics</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">06 · Let's Connect</p>
-                <h2>Open to Opportunities</h2>
-                <div class="amber-rule"></div>
-            </div>
-
-            <p class="contact-intro">I am actively seeking roles in M&E, MEAL, or data analysis — particularly in development, humanitarian, or public health contexts. I am also open to freelance evaluation assignments and data analysis projects.</p>
-
-            <div class="contact-items">
-                <div class="contact-item">
-                    <div class="contact-item-icon">✉️</div>
-                    <p class="contact-item-label">Email</p>
-                    <a href="mailto:your.email@example.com">
-                        <p class="contact-item-value">your.email@example.com</p>
-                    </a>
+        <!-- EDUCATION -->
+        <section id="education">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-label">05 · Academic Background</p>
+                    <h2>Education & Certifications</h2>
+                    <div class="amber-rule"></div>
                 </div>
 
-                <div class="contact-item">
-                    <div class="contact-item-icon">💼</div>
-                    <p class="contact-item-label">LinkedIn</p>
-                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
-                        <p class="contact-item-value">linkedin.com/in/yourprofile</p>
-                    </a>
+                <div class="education-item reveal-on-scroll">
+                    <div class="education-icon">🎓</div>
+                    <div class="education-content">
+                        <h3>Certificate in Data Analysis <span class="education-badge">Current</span></h3>
+                        <p class="education-institution">Online Learning Platform</p>
+                        <p class="education-period">2024 – Present</p>
+                        <p class="education-note">Currently enrolled — Python, SQL, Tableau</p>
+                    </div>
                 </div>
 
-                <div class="contact-item">
-                    <div class="contact-item-icon">📍</div>
-                    <p class="contact-item-label">Location</p>
-                    <p class="contact-item-value">Your City, Your Country</p>
+                <div class="education-item reveal-on-scroll">
+                    <div class="education-icon">🎓</div>
+                    <div class="education-content">
+                        <h3>Master of Development Studies</h3>
+                        <p class="education-institution">University (Your Country)</p>
+                        <p class="education-period">2017 – 2019</p>
+                        <p class="education-note">Thesis: Evaluating Community-Based Health Interventions</p>
+                    </div>
+                </div>
+
+                <div class="education-item reveal-on-scroll">
+                    <div class="education-icon">🎓</div>
+                    <div class="education-content">
+                        <h3>Bachelor of Social Sciences</h3>
+                        <p class="education-institution">University (Your Country)</p>
+                        <p class="education-period">2013 – 2017</p>
+                        <p class="education-note">Major: Sociology | Minor: Statistics</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>© 2025 Your Name · M&E Specialist & Data Analyst</p>
-        <p>Built with purpose · NGO Sector since 2019</p>
-    </footer>
+        <!-- CONTACT -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <p class="section-label">06 · Let's Connect</p>
+                    <h2>Open to Opportunities</h2>
+                    <div class="amber-rule"></div>
+                </div>
+
+                <p class="contact-intro">I am actively seeking roles in M&E, MEAL, or data analysis — particularly in development, humanitarian, or public health contexts. I am also open to freelance evaluation assignments and data analysis projects.</p>
+
+                <div class="contact-items">
+                    <div class="contact-item">
+                        <div class="contact-item-icon">✉️</div>
+                        <p class="contact-item-label">Email</p>
+                        <a href="mailto:your.email@example.com">
+                            <p class="contact-item-value">your.email@example.com</p>
+                        </a>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">💼</div>
+                        <p class="contact-item-label">LinkedIn</p>
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+                            <p class="contact-item-value">linkedin.com/in/yourprofile</p>
+                        </a>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <p class="contact-item-label">Location</p>
+                        <p class="contact-item-value">Your City, Your Country</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer>
+            <p>© 2025 Your Name · M&E Specialist & Data Analyst</p>
+            <p>Built with purpose · NGO Sector since 2019</p>
+        </footer>
+    </div>
 
     <script>
         // Smooth scrolling for navigation
