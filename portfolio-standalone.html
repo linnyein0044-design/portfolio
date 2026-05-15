@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M&E and Data Analysis Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-light: #FAFAF7;
+            --bg-dark: #1A3C2E;
+            --accent: #E8A020;
+            --text-dark: #2D2D2D;
+            --text-light: #757575;
+            --border: #E8E8E8;
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'DM Serif Display', serif;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ─── HEADER / NAV ─── */
+        header {
+            background: var(--bg-dark);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%25" style="stop-color:%23E8A020;stop-opacity:0.1" /><stop offset="100%25" style="stop-color:%23E8A020;stop-opacity:0" /></linearGradient></defs><rect width="1200" height="400" fill="url(%23grad)"/></svg>');
+            background-size: cover;
+        }
+
+        header .content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .avatar {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--bg-dark);
+            font-family: 'DM Serif Display', serif;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header .subtitle {
+            font-size: 1.1em;
+            color: #E8E8E8;
+            margin-bottom: 15px;
+        }
+
+        header .status {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--bg-dark);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        /* ─── NAVIGATION ─── */
+        nav {
+            background: var(--bg-dark);
+            padding: 0 20px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0;
+            border-bottom: 1px solid rgba(232, 160, 32, 0.2);
+        }
+
+        nav a {
+            color: #B0B0B0;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        /* ─── SECTIONS ─── */
+        section {
+            padding: 60px 20px;
+        }
+
+        section:nth-child(odd) {
+            background: var(--bg-light);
+        }
+
+        section:nth-child(even) {
+            background: white;
+        }
+
+        .section-header {
+            margin-bottom: 40px;
+        }
+
+        .section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.75em;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--accent);
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5em;
+            color: var(--bg-dark);
+            margin-bottom: 15px;
+        }
+
+        .amber-rule {
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        /* ─── HERO SECTION ─── */
+        #hero {
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #2D5A4F 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #hero h1 {
+            font-size: 3.5em;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        #hero em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        #hero p {
+            font-size: 1.1em;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #E8E8E8;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--bg-dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(232, 160, 32, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: var(--bg-dark);
+        }
+
+        /* ─── STATS ─── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+            background: var(--bg-dark);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Space Mono', monospace;
+            font-size: 2.5em;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 0.95em;
+            color: #B0B0B0;
+        }
+
+        /* ─── EXPERIENCE ─── */
+        .experience-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            transform: translateY(-4px);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .experience-header h3 {
+            font-size: 1.4em;
+            color: var(--bg-dark);
+        }
+
+        .experience-org {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        .experience-period {
+            background: #F5F5F5;
+            color: var(--text-dark);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .experience-description {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .highlights {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .highlights li {
+            color: var(--text-light);
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .highlights li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: #F5F5F5;
+            color: var(--bg-dark);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        /* ─── SKILLS ─── */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-category {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .skill-category h3 {
+            color: var(--bg-dark);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border);
+            font-size: 1.2em;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+
+        .skill-level {
+            font-family: 'Space Mono', monospace;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.85em;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: #E8E8E8;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--bg-dark), var(--accent));
+            border-radius: 4px;
+            transition: width 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        /* ─── PROJECTS ─── */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+            transform: translateY(-6px);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .project-icon {
+            width: 40px;
+            height: 40px;
+            background: #F5F5F5;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-dark);
+            font-size: 1.5em;
+        }
+
+        .project-meta {
+            text-align: right;
+        }
+
+        .project-year {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85em;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .project-type {
+            font-size: 0.8em;
+            color: var(--text-light);
+        }
+
+        .project-card h3 {
+            color: var(--bg-dark);
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+
+        .project-description {
+            color: var(--text-light);
+            margin-bottom: 12px;
+            font-size: 0.95em;
+            line-height: 1.6;
+        }
+
+        .project-metrics {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.85em;
+            color: var(--bg-dark);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .project-tag {
+            background: rgba(232, 160, 32, 0.1);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+
+        /* ─── EDUCATION ─── */
+        .education-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .education-icon {
+            width: 40px;
+            height: 40px;
+            background: #F5F5F5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--bg-dark);
+            flex-shrink: 0;
+            font-size: 1.3em;
+        }
+
+        .education-content {
+            flex: 1;
+        }
+
+        .education-content h3 {
+            color: var(--bg-dark);
+            margin-bottom: 4px;
+            font-size: 1.1em;
+        }
+
+        .education-institution {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .education-period {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8em;
+            color: var(--text-light);
+        }
+
+        .education-note {
+            font-size: 0.9em;
+            color: var(--text-light);
+            margin-top: 6px;
+        }
+
+        .education-badge {
+            display: inline-block;
+            background: rgba(232, 160, 32, 0.1);
+            color: var(--accent);
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.75em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        /* ─── CONTACT ─── */
+        #contact {
+            background: var(--bg-dark);
+            color: white;
+        }
+
+        #contact .section-header h2 {
+            color: white;
+        }
+
+        .contact-intro {
+            font-size: 1.05em;
+            color: #B0B0B0;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .contact-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-item {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(232, 160, 32, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent);
+            background: rgba(232, 160, 32, 0.1);
+        }
+
+        .contact-item-icon {
+            width: 40px;
+            height: 40px;
+            background: rgba(232, 160, 32, 0.2);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+            margin-bottom: 12px;
+            font-size: 1.3em;
+        }
+
+        .contact-item-label {
+            font-size: 0.8em;
+            color: #B0B0B0;
+            margin-bottom: 4px;
+        }
+
+        .contact-item-value {
+            font-weight: 600;
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a .contact-item-value:hover {
+            color: var(--accent);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: #0F2B22;
+            color: #888;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9em;
+            border-top: 1px solid rgba(232, 160, 32, 0.2);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            #hero h1 {
+                font-size: 2em;
+            }
+
+            .section-header h2 {
+                font-size: 1.8em;
+            }
+
+            nav {
+                gap: 0;
+            }
+
+            nav a {
+                padding: 10px 15px;
+                font-size: 0.9em;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .button-group .btn {
+                width: 100%;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .education-item {
+                flex-direction: column;
+            }
+        }
+
+        /* ─── ANIMATIONS ─── */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .reveal-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .reveal-on-scroll.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="content">
+            <div class="avatar">YN</div>
+            <h1>Your Name</h1>
+            <p class="subtitle">M&E Specialist · Data Analyst</p>
+            <span class="status">Open to Work</span>
+        </div>
+    </header>
+
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="#hero" class="nav-link active">About</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#contact" class="nav-link">Contact</a>
+    </nav>
+
+    <!-- HERO -->
+    <section id="hero">
+        <div class="container">
+            <h1>Measuring Impact,<br><em>Telling Stories with Data</em></h1>
+            <p>6+ years in Monitoring & Evaluation across NGO programs in health, WASH, education, and livelihoods. Now expanding into data analysis to turn field evidence into deeper insights.</p>
+            <div class="button-group">
+                <a href="#experience" class="btn btn-primary">View Experience</a>
+                <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS -->
+    <section>
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">6+</div>
+                    <div class="stat-label">Years in NGO Sector</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">12+</div>
+                    <div class="stat-label">Projects Evaluated</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Countries Worked In</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Beneficiaries Reached</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">02 · Work History</p>
+                <h2>Professional Experience</h2>
+                <div class="amber-rule"></div>
+            </div>
+
+            <div class="experience-item reveal-on-scroll">
+                <div class="experience-header">
+                    <div>
+                        <h3>Senior M&E Officer</h3>
+                        <p class="experience-org">International Development NGO</p>
+                    </div>
+                    <span class="experience-period">2023 – Present</span>
+                </div>
+                <p class="experience-description">Lead the design and implementation of monitoring and evaluation frameworks for multi-country health and livelihood programs. Manage data collection systems using KoBoToolbox and ODK, and produce quarterly impact reports for donor reporting (USAID, EU).</p>
+                <ul class="highlights">
+                    <li>Designed a real-time dashboard tracking 8 KPIs across 3 countries</li>
+                    <li>Trained 40+ field staff on data collection protocols</li>
+                    <li>Reduced data entry errors by 35% through process redesign</li>
+                </ul>
+                <div class="tags">
+                    <span class="tag">M&E Framework</span>
+                    <span class="tag">KoBoToolbox</span>
+                    <span class="tag">Power BI</span>
+                    <span class="tag">Donor Reporting</span>
+                </div>
+            </div>
+
+            <div class="experience-item reveal-on-scroll">
+                <div class="experience-header">
+                    <div>
+                        <h3>M&E Officer</h3>
+                        <p class="experience-org">Community Health NGO</p>
+                    </div>
+                    <span class="experience-period">2021 – 2023</span>
+                </div>
+                <p class="experience-description">Developed and managed MEAL systems for a WASH and nutrition program covering 120 villages. Conducted baseline, midline, and endline surveys. Produced evidence-based learning reports to inform program adaptation.</p>
+                <ul class="highlights">
+                    <li>Managed a beneficiary database of 15,000+ records</li>
+                    <li>Conducted 3 evaluation cycles (baseline, midline, endline)</li>
+                    <li>Authored 6 donor reports with 100% on-time submission</li>
+                </ul>
+                <div class="tags">
+                    <span class="tag">MEAL</span>
+                    <span class="tag">WASH</span>
+                    <span class="tag">Survey Design</span>
+                    <span class="tag">ODK</span>
+                </div>
+            </div>
+
+            <div class="experience-item reveal-on-scroll">
+                <div class="experience-header">
+                    <div>
+                        <h3>M&E Assistant</h3>
+                        <p class="experience-org">Education & Youth Development NGO</p>
+                    </div>
+                    <span class="experience-period">2019 – 2021</span>
+                </div>
+                <p class="experience-description">Supported the M&E team in data collection, cleaning, and reporting for education programs. Assisted in developing logical frameworks and indicator tracking matrices for project proposals.</p>
+                <ul class="highlights">
+                    <li>Supported data collection for 5,000+ student beneficiaries</li>
+                    <li>Built indicator tracking spreadsheets used across 4 projects</li>
+                    <li>Contributed to 3 successful grant proposals</li>
+                </ul>
+                <div class="tags">
+                    <span class="tag">LogFrame</span>
+                    <span class="tag">Data Collection</span>
+                    <span class="tag">Reporting</span>
+                    <span class="tag">Excel</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">03 · Competencies</p>
+                <h2>Skills & Tools</h2>
+                <div class="amber-rule"></div>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>M&E & MEAL</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>M&E Framework Design</span>
+                            <span class="skill-level">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Logical Framework (LogFrame)</span>
+                            <span class="skill-level">92%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 92%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Baseline / Endline Surveys</span>
+                            <span class="skill-level">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>KoBoToolbox / ODK</span>
+                            <span class="skill-level">88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Donor Reporting</span>
+                            <span class="skill-level">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Data Analysis <span class="education-badge">Learning</span></h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Microsoft Excel (Advanced)</span>
+                            <span class="skill-level">88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 88%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Power BI</span>
+                            <span class="skill-level">72%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 72%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Python (Pandas, Matplotlib)</span>
+                            <span class="skill-level">55%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 55%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>SQL Basics</span>
+                            <span class="skill-level">50%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 50%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Tableau</span>
+                            <span class="skill-level">45%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 45%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Soft Skills</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Report Writing</span>
+                            <span class="skill-level">95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Stakeholder Engagement</span>
+                            <span class="skill-level">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Training & Capacity Building</span>
+                            <span class="skill-level">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Cross-cultural Communication</span>
+                            <span class="skill-level">88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-fill" style="width: 88%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">04 · Portfolio</p>
+                <h2>Key Projects</h2>
+                <div class="amber-rule"></div>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card reveal-on-scroll">
+                    <div class="project-header">
+                        <div class="project-icon">📊</div>
+                        <div class="project-meta">
+                            <div class="project-year">2024</div>
+                            <div class="project-type">Data Visualization</div>
+                        </div>
+                    </div>
+                    <h3>WASH Impact Dashboard</h3>
+                    <p class="project-description">Built an interactive Power BI dashboard tracking water, sanitation, and hygiene indicators across 3 provinces. Integrated KoBoToolbox data feeds for near-real-time monitoring.</p>
+                    <p class="project-metrics">15,000 beneficiaries · 3 provinces · 8 KPIs</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Power BI</span>
+                        <span class="project-tag">KoBoToolbox</span>
+                        <span class="project-tag">WASH</span>
+                        <span class="project-tag">Dashboard</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal-on-scroll">
+                    <div class="project-header">
+                        <div class="project-icon">📈</div>
+                        <div class="project-meta">
+                            <div class="project-year">2023</div>
+                            <div class="project-type">M&E Evaluation</div>
+                        </div>
+                    </div>
+                    <h3>Nutrition Program Endline Evaluation</h3>
+                    <p class="project-description">Led the endline evaluation of a 2-year nutrition program, including survey design, data collection coordination, statistical analysis, and final report for EU donor.</p>
+                    <p class="project-metrics">2,400 households surveyed · 12 indicators</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Survey Design</span>
+                        <span class="project-tag">SPSS</span>
+                        <span class="project-tag">Evaluation</span>
+                        <span class="project-tag">EU Reporting</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal-on-scroll">
+                    <div class="project-header">
+                        <div class="project-icon">🗄️</div>
+                        <div class="project-meta">
+                            <div class="project-year">2022</div>
+                            <div class="project-type">Data Management</div>
+                        </div>
+                    </div>
+                    <h3>Beneficiary Database Redesign</h3>
+                    <p class="project-description">Redesigned the organization's beneficiary tracking system using Excel and Power Query, reducing duplicate entries by 40% and enabling cross-program analysis.</p>
+                    <p class="project-metrics">15,000+ records · 40% error reduction</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Excel</span>
+                        <span class="project-tag">Power Query</span>
+                        <span class="project-tag">Data Cleaning</span>
+                        <span class="project-tag">Database</span>
+                    </div>
+                </div>
+
+                <div class="project-card reveal-on-scroll">
+                    <div class="project-header">
+                        <div class="project-icon">📚</div>
+                        <div class="project-meta">
+                            <div class="project-year">2021</div>
+                            <div class="project-type">Research & Analysis</div>
+                        </div>
+                    </div>
+                    <h3>Youth Education Impact Study</h3>
+                    <p class="project-description">Contributed to a mixed-methods impact study examining learning outcomes for out-of-school youth. Managed quantitative data collection and produced data visualizations for the final report.</p>
+                    <p class="project-metrics">5,000 students · 4 districts</p>
+                    <div class="project-tags">
+                        <span class="project-tag">Mixed Methods</span>
+                        <span class="project-tag">Data Collection</span>
+                        <span class="project-tag">Visualization</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">05 · Academic Background</p>
+                <h2>Education & Certifications</h2>
+                <div class="amber-rule"></div>
+            </div>
+
+            <div class="education-item reveal-on-scroll">
+                <div class="education-icon">🎓</div>
+                <div class="education-content">
+                    <h3>Certificate in Data Analysis <span class="education-badge">Current</span></h3>
+                    <p class="education-institution">Online Learning Platform</p>
+                    <p class="education-period">2024 – Present</p>
+                    <p class="education-note">Currently enrolled — Python, SQL, Tableau</p>
+                </div>
+            </div>
+
+            <div class="education-item reveal-on-scroll">
+                <div class="education-icon">🎓</div>
+                <div class="education-content">
+                    <h3>Master of Development Studies</h3>
+                    <p class="education-institution">University (Your Country)</p>
+                    <p class="education-period">2017 – 2019</p>
+                    <p class="education-note">Thesis: Evaluating Community-Based Health Interventions</p>
+                </div>
+            </div>
+
+            <div class="education-item reveal-on-scroll">
+                <div class="education-icon">🎓</div>
+                <div class="education-content">
+                    <h3>Bachelor of Social Sciences</h3>
+                    <p class="education-institution">University (Your Country)</p>
+                    <p class="education-period">2013 – 2017</p>
+                    <p class="education-note">Major: Sociology | Minor: Statistics</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">06 · Let's Connect</p>
+                <h2>Open to Opportunities</h2>
+                <div class="amber-rule"></div>
+            </div>
+
+            <p class="contact-intro">I am actively seeking roles in M&E, MEAL, or data analysis — particularly in development, humanitarian, or public health contexts. I am also open to freelance evaluation assignments and data analysis projects.</p>
+
+            <div class="contact-items">
+                <div class="contact-item">
+                    <div class="contact-item-icon">✉️</div>
+                    <p class="contact-item-label">Email</p>
+                    <a href="mailto:your.email@example.com">
+                        <p class="contact-item-value">your.email@example.com</p>
+                    </a>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon">💼</div>
+                    <p class="contact-item-label">LinkedIn</p>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
+                        <p class="contact-item-value">linkedin.com/in/yourprofile</p>
+                    </a>
+                </div>
+
+                <div class="contact-item">
+                    <div class="contact-item-icon">📍</div>
+                    <p class="contact-item-label">Location</p>
+                    <p class="contact-item-value">Your City, Your Country</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>© 2025 Your Name · M&E Specialist & Data Analyst</p>
+        <p>Built with purpose · NGO Sector since 2019</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Update active nav link on scroll
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section[id]');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Reveal on scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Animate skill bars on scroll
+        const skillBars = document.querySelectorAll('.skill-fill');
+        const skillObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.width = entry.target.parentElement.parentElement.querySelector('.skill-level').textContent;
+                    skillObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        skillBars.forEach(bar => {
+            bar.style.width = '0';
+            skillObserver.observe(bar);
+        });
+    </script>
+</body>
+</html>
