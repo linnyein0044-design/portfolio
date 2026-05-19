@@ -3,10 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M&E and Data Analysis Portfolio</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>Saw Linn Linn Nyein - MEAL & Data Analysis Professional</title>
     <style>
         * {
             margin: 0;
@@ -14,747 +11,81 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --bg-light: #FAFAF7;
-            --bg-dark: #1A3C2E;
-            --accent: #E8A020;
-            --text-dark: #2D2D2D;
-            --text-light: #757575;
-            --border: #E8E8E8;
-            --card-bg: #FFFFFF;
-        }
-
         body {
-            font-family: 'DM Sans', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #FFFFFF;
+            color: #001A4D;
             line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: #001F3F;
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
             display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'DM Serif Display', serif;
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #B3D9FF;
         }
 
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #B3D9FF;
+            border-bottom: 2px solid #B3D9FF;
+            padding-bottom: 5px;
+        }
+
+        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
         }
 
-        /* ─── SIDEBAR NAVIGATION ─── */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 280px;
-            height: 100vh;
-            background: var(--bg-dark);
-            color: white;
-            padding: 40px 20px;
-            overflow-y: auto;
-            z-index: 1000;
+        /* Page Sections */
+        .page {
+            display: none;
+            padding: 60px 0;
+            animation: fadeIn 0.5s ease-in;
         }
 
-        .sidebar-header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 30px;
-            border-bottom: 1px solid rgba(232, 160, 32, 0.3);
-        }
-
-        .avatar {
-            width: 80px;
-            height: 80px;
-            background: var(--accent);
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            font-weight: bold;
-            color: var(--bg-dark);
-            font-family: 'DM Serif Display', serif;
-        }
-
-        .sidebar-header h1 {
-            font-size: 1.5em;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-
-        .sidebar-header .subtitle {
-            font-size: 0.9em;
-            color: #B0B0B0;
-            line-height: 1.4;
-        }
-
-        .sidebar-header .status {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--bg-dark);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.75em;
-            font-weight: 600;
-            margin-top: 15px;
-        }
-
-        /* ─── SIDEBAR NAVIGATION LINKS ─── */
-        .sidebar-nav {
-            list-style: none;
-        }
-
-        .sidebar-nav li {
-            margin-bottom: 0;
-        }
-
-        .sidebar-nav a {
+        .page.active {
             display: block;
-            color: #B0B0B0;
-            text-decoration: none;
-            padding: 12px 16px;
-            border-left: 3px solid transparent;
-            transition: all 0.3s ease;
-            font-size: 0.95em;
         }
 
-        .sidebar-nav a:hover, .sidebar-nav a.active {
-            color: var(--accent);
-            border-left-color: var(--accent);
-            background: rgba(232, 160, 32, 0.1);
-        }
-
-        /* ─── MAIN CONTENT ─── */
-        .main-content {
-            margin-left: 280px;
-            flex: 1;
-            width: calc(100% - 280px);
-        }
-
-        /* ─── HEADER ─── */
-        header {
-            background: var(--bg-dark);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><defs><linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%25" style="stop-color:%23E8A020;stop-opacity:0.1" /><stop offset="100%25" style="stop-color:%23E8A020;stop-opacity:0" /></linearGradient></defs><rect width="1200" height="400" fill="url(%23grad)"/></svg>');
-            background-size: cover;
-        }
-
-        header .content {
-            position: relative;
-            z-index: 2;
-        }
-
-        header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        header .subtitle {
-            font-size: 1.1em;
-            color: #E8E8E8;
-            margin-bottom: 15px;
-        }
-
-        header .status {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--bg-dark);
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 600;
-        }
-
-        /* ─── SECTIONS ─── */
-        section {
-            padding: 60px 20px;
-        }
-
-        section:nth-child(odd) {
-            background: var(--bg-light);
-        }
-
-        section:nth-child(even) {
-            background: white;
-        }
-
-        .section-header {
-            margin-bottom: 40px;
-            text-align: left;
-        }
-
-        .section-label {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.75em;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--accent);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            text-align: left;
-        }
-
-        .section-header h2 {
-            font-size: 2.5em;
-            color: var(--bg-dark);
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .amber-rule {
-            width: 50px;
-            height: 3px;
-            background: var(--accent);
-            border-radius: 2px;
-        }
-
-        /* ─── HERO SECTION ─── */
-        #hero {
-            background: linear-gradient(135deg, var(--bg-dark) 0%, #2D5A4F 100%);
-            color: white;
-            padding: 80px 20px;
-            text-align: center;
-            min-height: 500px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        #hero h1 {
-            font-size: 3.5em;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        #hero em {
-            font-style: italic;
-            color: var(--accent);
-        }
-
-        #hero p {
-            font-size: 1.1em;
-            max-width: 600px;
-            margin: 0 auto 30px;
-            color: #E8E8E8;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 6px;
-            font-size: 1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            font-family: 'DM Sans', sans-serif;
-        }
-
-        .btn-primary {
-            background: var(--accent);
-            color: var(--bg-dark);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(232, 160, 32, 0.3);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--accent);
-            border: 2px solid var(--accent);
-        }
-
-        .btn-secondary:hover {
-            background: var(--accent);
-            color: var(--bg-dark);
-        }
-
-        /* ─── STATS ─── */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-            background: var(--bg-dark);
-            color: white;
-            padding: 40px;
-            border-radius: 8px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-family: 'Space Mono', monospace;
-            font-size: 2.5em;
-            font-weight: 700;
-            color: var(--accent);
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 0.95em;
-            color: #B0B0B0;
-        }
-
-        /* ─── EXPERIENCE ─── */
-        .experience-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 30px;
-            margin-bottom: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .experience-item:hover {
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            transform: translateY(-4px);
-        }
-
-        .experience-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .experience-header h3 {
-            font-size: 1.4em;
-            color: var(--bg-dark);
-        }
-
-        .experience-org {
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 1em;
-        }
-
-        .experience-period {
-            background: #F5F5F5;
-            color: var(--text-dark);
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-family: 'Space Mono', monospace;
-            font-size: 0.85em;
-            font-weight: 600;
-        }
-
-        .experience-description {
-            color: var(--text-light);
-            margin-bottom: 15px;
-            line-height: 1.8;
-        }
-
-        .highlights {
-            list-style: none;
-            margin-bottom: 15px;
-        }
-
-        .highlights li {
-            color: var(--text-light);
-            margin-bottom: 8px;
-            padding-left: 20px;
-            position: relative;
-        }
-
-        .highlights li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--accent);
-            font-weight: bold;
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .tag {
-            background: #F5F5F5;
-            color: var(--bg-dark);
-            padding: 6px 12px;
-            border-radius: 20px;
-            font-size: 0.85em;
-            font-weight: 500;
-        }
-
-        /* ─── SKILLS ─── */
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .skill-category {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 25px;
-        }
-
-        .skill-category h3 {
-            color: var(--bg-dark);
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--border);
-            font-size: 1.2em;
-        }
-
-        .skill-item {
-            margin-bottom: 20px;
-        }
-
-        .skill-name {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            font-size: 0.95em;
-            font-weight: 500;
-        }
-
-        .skill-level {
-            font-family: 'Space Mono', monospace;
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 0.85em;
-        }
-
-        .skill-bar {
-            height: 8px;
-            background: #E8E8E8;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .skill-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--bg-dark), var(--accent));
-            border-radius: 4px;
-            transition: width 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        /* ─── PROJECTS ─── */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .project-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .project-card:hover {
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-            transform: translateY(-6px);
-        }
-
-        .project-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 15px;
-        }
-
-        .project-icon {
-            width: 40px;
-            height: 40px;
-            background: #F5F5F5;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--bg-dark);
-            font-size: 1.5em;
-        }
-
-        .project-meta {
-            text-align: right;
-        }
-
-        .project-year {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.85em;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .project-type {
-            font-size: 0.8em;
-            color: var(--text-light);
-        }
-
-        .project-card h3 {
-            color: var(--bg-dark);
-            margin-bottom: 12px;
-            font-size: 1.3em;
-        }
-
-        .project-description {
-            color: var(--text-light);
-            margin-bottom: 12px;
-            font-size: 0.95em;
-            line-height: 1.6;
-        }
-
-        .project-metrics {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.85em;
-            color: var(--bg-dark);
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .project-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-        }
-
-        .project-tag {
-            background: rgba(232, 160, 32, 0.1);
-            color: var(--accent);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.8em;
-            font-weight: 500;
-        }
-
-        /* ─── EDUCATION ─── */
-        .education-item {
-            background: var(--card-bg);
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 15px;
-            display: flex;
-            gap: 15px;
-        }
-
-        .education-icon {
-            width: 40px;
-            height: 40px;
-            background: #F5F5F5;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--bg-dark);
-            flex-shrink: 0;
-            font-size: 1.3em;
-        }
-
-        .education-content {
-            flex: 1;
-        }
-
-        .education-content h3 {
-            color: var(--bg-dark);
-            margin-bottom: 4px;
-            font-size: 1.1em;
-        }
-
-        .education-institution {
-            color: var(--accent);
-            font-weight: 600;
-            font-size: 0.95em;
-        }
-
-        .education-period {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.8em;
-            color: var(--text-light);
-        }
-
-        .education-note {
-            font-size: 0.9em;
-            color: var(--text-light);
-            margin-top: 6px;
-        }
-
-        .education-badge {
-            display: inline-block;
-            background: rgba(232, 160, 32, 0.1);
-            color: var(--accent);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.75em;
-            font-weight: 600;
-            margin-left: 10px;
-        }
-
-        /* ─── CONTACT ─── */
-        #contact {
-            background: var(--bg-dark);
-            color: white;
-        }
-
-        #contact .section-header h2 {
-            color: white;
-        }
-
-        .contact-intro {
-            font-size: 1.05em;
-            color: #B0B0B0;
-            margin-bottom: 30px;
-            max-width: 600px;
-        }
-
-        .contact-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
-
-        .contact-item {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(232, 160, 32, 0.3);
-            border-radius: 8px;
-            padding: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .contact-item:hover {
-            border-color: var(--accent);
-            background: rgba(232, 160, 32, 0.1);
-        }
-
-        .contact-item-icon {
-            width: 40px;
-            height: 40px;
-            background: rgba(232, 160, 32, 0.2);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--accent);
-            margin-bottom: 12px;
-            font-size: 1.3em;
-        }
-
-        .contact-item-label {
-            font-size: 0.8em;
-            color: #B0B0B0;
-            margin-bottom: 4px;
-        }
-
-        .contact-item-value {
-            font-weight: 600;
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-item a .contact-item-value:hover {
-            color: var(--accent);
-        }
-
-        /* ─── FOOTER ─── */
-        footer {
-            background: #0F2B22;
-            color: #888;
-            text-align: center;
-            padding: 30px 20px;
-            font-size: 0.9em;
-            border-top: 1px solid rgba(232, 160, 32, 0.2);
-        }
-
-        /* ─── RESPONSIVE ─── */
-        @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                position: static;
-                width: 100%;
-                height: auto;
-                padding: 20px;
-            }
-
-            .main-content {
-                margin-left: 0;
-                width: 100%;
-            }
-
-            .sidebar-header {
-                margin-bottom: 20px;
-                padding-bottom: 20px;
-            }
-
-            .sidebar-nav a {
-                display: inline-block;
-                padding: 8px 12px;
-                margin-right: 10px;
-            }
-
-            header h1 {
-                font-size: 2em;
-            }
-
-            #hero h1 {
-                font-size: 2em;
-            }
-
-            .section-header h2 {
-                font-size: 1.8em;
-            }
-
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .button-group {
-                flex-direction: column;
-            }
-
-            .button-group .btn {
-                width: 100%;
-            }
-        }
-
-        /* ─── ANIMATIONS ─── */
-        @keyframes fadeInUp {
+        @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(10px);
             }
             to {
                 opacity: 1;
@@ -762,70 +93,555 @@
             }
         }
 
-        .fade-in {
-            animation: fadeInUp 0.6s ease-out forwards;
+        /* Section Header */
+        .section-header {
+            margin-bottom: 40px;
+            text-align: left;
         }
 
-        .reveal-on-scroll {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        .section-label {
+            color: #004B87;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
         }
 
-        .reveal-on-scroll.revealed {
-            opacity: 1;
-            transform: translateY(0);
+        .section-header h2 {
+            font-size: 36px;
+            color: #001A4D;
+            margin-bottom: 10px;
+        }
+
+        /* Home Page */
+        .hero {
+            background: linear-gradient(135deg, #001F3F 0%, #003D82 100%);
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin-bottom: 30px;
+            color: #B3D9FF;
+        }
+
+        .hero-button {
+            display: inline-block;
+            background: #E8A020;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+
+        .hero-button:hover {
+            background: #D48A1A;
+        }
+
+        /* Stats */
+        .stats {
+            background: #E8A020;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 8px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* About & Contact Page */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 40px;
+            align-items: start;
+            margin-bottom: 60px;
+        }
+
+        .about-photo {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 3px solid #E8F4F8;
+        }
+
+        .about-text h3 {
+            font-size: 24px;
+            color: #001A4D;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            color: #4A6FA5;
+            line-height: 1.8;
+        }
+
+        .about-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .highlight-item {
+            background: #F0F5FF;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #004B87;
+        }
+
+        .highlight-item label {
+            display: block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #004B87;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .highlight-item p {
+            font-size: 16px;
+            font-weight: bold;
+            color: #001A4D;
+            margin: 0;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .contact-item {
+            background: #F0F5FF;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #004B87;
+        }
+
+        .contact-item strong {
+            display: block;
+            color: #004B87;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .contact-item a,
+        .contact-item span {
+            color: #001A4D;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-item a:hover {
+            color: #004B87;
+            text-decoration: underline;
+        }
+
+        /* Experience Page */
+        .experience-item {
+            background: #FFFFFF;
+            border: 1px solid #E8F4F8;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 15px;
+        }
+
+        .experience-header h3 {
+            font-size: 20px;
+            color: #001A4D;
+        }
+
+        .experience-date {
+            background: #E8F4F8;
+            color: #004B87;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .experience-org {
+            color: #004B87;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .experience-section {
+            margin-top: 20px;
+            padding: 15px;
+            background: #F0F5FF;
+            border-radius: 5px;
+        }
+
+        .experience-section h4 {
+            color: #004B87;
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .experience-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .experience-section li {
+            color: #4A6FA5;
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .experience-section li:before {
+            content: "▸";
+            position: absolute;
+            left: 0;
+            color: #004B87;
+        }
+
+        /* Skills & Education Page */
+        .skill-category {
+            margin-bottom: 50px;
+            background: #F0F5FF;
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid #004B87;
+        }
+
+        .skill-category h3 {
+            font-size: 22px;
+            color: #001A4D;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #004B87;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .skill-category-icon {
+            font-size: 28px;
+        }
+
+        .skill-item {
+            margin-bottom: 25px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .skill-name label {
+            font-weight: 600;
+            color: #001A4D;
+        }
+
+        .skill-percentage {
+            color: #004B87;
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            background: #E8F4F8;
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            background: linear-gradient(90deg, #004B87, #0066CC);
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        /* Education Items */
+        .education-item {
+            background: #F0F5FF;
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #004B87;
+        }
+
+        .education-item h3 {
+            color: #001A4D;
+            margin-bottom: 8px;
+            font-size: 18px;
+        }
+
+        .education-org {
+            color: #004B87;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .education-date {
+            color: #7A9B9D;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .education-item p {
+            color: #4A6FA5;
+            line-height: 1.6;
+        }
+
+        .training-tag {
+            background: #E8F4F8;
+            color: #004B87;
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        /* Projects Page */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: #FFFFFF;
+            border: 1px solid #E8F4F8;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-icon {
+            font-size: 32px;
+            margin-bottom: 15px;
+        }
+
+        .project-card h3 {
+            color: #001A4D;
+            margin-bottom: 12px;
+            font-size: 18px;
+        }
+
+        .project-card p {
+            color: #4A6FA5;
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .project-tools {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .tool-tag {
+            background: #E8F4F8;
+            color: #004B87;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #E8F4F8;
+            font-size: 12px;
+            color: #7A9B9D;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 15px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .about-highlights {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .experience-date {
+                margin-top: 10px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: #001F3F;
+                flex-direction: column;
+                gap: 0;
+                padding: 20px;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 10px 0;
+                display: block;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .section-header h2 {
+                font-size: 24px;
+            }
+
+            .hero h1 {
+                font-size: 24px;
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: #001F3F;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
-    <!-- SIDEBAR NAVIGATION -->
-    <aside class="sidebar">
-        <div class="sidebar-header">
-            <div class="avatar">YN</div>
-            <h1>Your Name</h1>
-            <p class="subtitle">M&E Specialist<br>Data Analyst</p>
-            <span class="status">Open to Work</span>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="header-content">
+            <div class="logo">Saw Linn Linn Nyein</div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <nav>
+                <ul id="navMenu">
+                    <li><a onclick="showPage('home', event)" class="nav-link active">Home</a></li>
+                    <li><a onclick="showPage('about', event)" class="nav-link">About</a></li>
+                    <li><a onclick="showPage('experience', event)" class="nav-link">Experience</a></li>
+                    <li><a onclick="showPage('skills', event)" class="nav-link">Skills</a></li>
+                    <li><a onclick="showPage('projects', event)" class="nav-link">Projects</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <div id="home" class="page active">
+        <div class="hero">
+            <div class="container">
+                <h1>Saw Linn Linn Nyein</h1>
+                <p>MEAL & Data Management Professional</p>
+                <button class="hero-button" onclick="showPage('about', event)">Learn More</button>
+            </div>
         </div>
 
-        <nav>
-            <ul class="sidebar-nav">
-                <li><a href="#hero" class="nav-link active">About</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#education" class="nav-link">Education</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-        </nav>
-    </aside>
-
-    <!-- MAIN CONTENT -->
-    <div class="main-content">
-        <!-- HEADER -->
-        <header>
-            <div class="content">
-                <h1>Your Name</h1>
-                <p class="subtitle">M&E Specialist · Data Analyst</p>
-                <span class="status">Open to Work</span>
-            </div>
-        </header>
-
-        <!-- HERO -->
-        <section id="hero">
+        <div class="stats">
             <div class="container">
-                <h1>Measuring Impact,<br><em>Telling Stories with Data</em></h1>
-                <p>6+ years in Monitoring & Evaluation across NGO programs in health, WASH, education, and livelihoods. Now expanding into data analysis to turn field evidence into deeper insights.</p>
-                <div class="button-group">
-                    <a href="#experience" class="btn btn-primary">View Experience</a>
-                    <a href="#contact" class="btn btn-secondary">Get in Touch</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- STATS -->
-        <section>
-            <div class="container">
+                <h2 style="color: white; margin-bottom: 30px;">Professional Highlights</h2>
                 <div class="stats-grid">
                     <div class="stat-item">
                         <div class="stat-number">6+</div>
@@ -845,475 +661,563 @@
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- EXPERIENCE -->
-        <section id="experience">
-            <div class="container">
-                <div class="section-header">
-                    <p class="section-label">02 · Work History</p>
-                    <h2>Professional Experience</h2>
-                    <div class="amber-rule"></div>
-                </div>
-
-                <div class="experience-item reveal-on-scroll">
-                    <div class="experience-header">
-                        <div>
-                            <h3>Senior M&E Officer</h3>
-                            <p class="experience-org">International Development NGO</p>
-                        </div>
-                        <span class="experience-period">2023 – Present</span>
-                    </div>
-                    <p class="experience-description">Lead the design and implementation of monitoring and evaluation frameworks for multi-country health and livelihood programs. Manage data collection systems using KoBoToolbox and ODK, and produce quarterly impact reports for donor reporting (USAID, EU).</p>
-                    <ul class="highlights">
-                        <li>Designed a real-time dashboard tracking 8 KPIs across 3 countries</li>
-                        <li>Trained 40+ field staff on data collection protocols</li>
-                        <li>Reduced data entry errors by 35% through process redesign</li>
-                    </ul>
-                    <div class="tags">
-                        <span class="tag">M&E Framework</span>
-                        <span class="tag">KoBoToolbox</span>
-                        <span class="tag">Power BI</span>
-                        <span class="tag">Donor Reporting</span>
-                    </div>
-                </div>
-
-                <div class="experience-item reveal-on-scroll">
-                    <div class="experience-header">
-                        <div>
-                            <h3>M&E Officer</h3>
-                            <p class="experience-org">Community Health NGO</p>
-                        </div>
-                        <span class="experience-period">2021 – 2023</span>
-                    </div>
-                    <p class="experience-description">Developed and managed MEAL systems for a WASH and nutrition program covering 120 villages. Conducted baseline, midline, and endline surveys. Produced evidence-based learning reports to inform program adaptation.</p>
-                    <ul class="highlights">
-                        <li>Managed a beneficiary database of 15,000+ records</li>
-                        <li>Conducted 3 evaluation cycles (baseline, midline, endline)</li>
-                        <li>Authored 6 donor reports with 100% on-time submission</li>
-                    </ul>
-                    <div class="tags">
-                        <span class="tag">MEAL</span>
-                        <span class="tag">WASH</span>
-                        <span class="tag">Survey Design</span>
-                        <span class="tag">ODK</span>
-                    </div>
-                </div>
-
-                <div class="experience-item reveal-on-scroll">
-                    <div class="experience-header">
-                        <div>
-                            <h3>M&E Assistant</h3>
-                            <p class="experience-org">Education & Youth Development NGO</p>
-                        </div>
-                        <span class="experience-period">2019 – 2021</span>
-                    </div>
-                    <p class="experience-description">Supported the M&E team in data collection, cleaning, and reporting for education programs. Assisted in developing logical frameworks and indicator tracking matrices for project proposals.</p>
-                    <ul class="highlights">
-                        <li>Supported data collection for 5,000+ student beneficiaries</li>
-                        <li>Built indicator tracking spreadsheets used across 4 projects</li>
-                        <li>Contributed to 3 successful grant proposals</li>
-                    </ul>
-                    <div class="tags">
-                        <span class="tag">LogFrame</span>
-                        <span class="tag">Data Collection</span>
-                        <span class="tag">Reporting</span>
-                        <span class="tag">Excel</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SKILLS -->
-        <section id="skills">
-            <div class="container">
-                <div class="section-header">
-                    <p class="section-label">03 · Competencies</p>
-                    <h2>Skills & Tools</h2>
-                    <div class="amber-rule"></div>
-                </div>
-
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>M&E & MEAL</h3>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>M&E Framework Design</span>
-                                <span class="skill-level">95%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Logical Framework (LogFrame)</span>
-                                <span class="skill-level">92%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 92%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Baseline / Endline Surveys</span>
-                                <span class="skill-level">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>KoBoToolbox / ODK</span>
-                                <span class="skill-level">88%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 88%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Donor Reporting</span>
-                                <span class="skill-level">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 85%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Data Analysis <span class="education-badge">Learning</span></h3>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Microsoft Excel (Advanced)</span>
-                                <span class="skill-level">88%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 88%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Power BI</span>
-                                <span class="skill-level">72%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 72%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Python (Pandas, Matplotlib)</span>
-                                <span class="skill-level">55%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 55%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>SQL Basics</span>
-                                <span class="skill-level">50%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 50%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Tableau</span>
-                                <span class="skill-level">45%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 45%"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>Soft Skills</h3>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Report Writing</span>
-                                <span class="skill-level">95%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Stakeholder Engagement</span>
-                                <span class="skill-level">90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Training & Capacity Building</span>
-                                <span class="skill-level">85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Cross-cultural Communication</span>
-                                <span class="skill-level">88%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-fill" style="width: 88%"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROJECTS -->
-        <section id="projects">
-            <div class="container">
-                <div class="section-header">
-                    <p class="section-label">04 · Portfolio</p>
-                    <h2>Key Projects</h2>
-                    <div class="amber-rule"></div>
-                </div>
-
-                <div class="projects-grid">
-                    <div class="project-card reveal-on-scroll">
-                        <div class="project-header">
-                            <div class="project-icon">📊</div>
-                            <div class="project-meta">
-                                <div class="project-year">2024</div>
-                                <div class="project-type">Data Visualization</div>
-                            </div>
-                        </div>
-                        <h3>WASH Impact Dashboard</h3>
-                        <p class="project-description">Built an interactive Power BI dashboard tracking water, sanitation, and hygiene indicators across 3 provinces. Integrated KoBoToolbox data feeds for near-real-time monitoring.</p>
-                        <p class="project-metrics">15,000 beneficiaries · 3 provinces · 8 KPIs</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Power BI</span>
-                            <span class="project-tag">KoBoToolbox</span>
-                            <span class="project-tag">WASH</span>
-                            <span class="project-tag">Dashboard</span>
-                        </div>
-                    </div>
-
-                    <div class="project-card reveal-on-scroll">
-                        <div class="project-header">
-                            <div class="project-icon">📈</div>
-                            <div class="project-meta">
-                                <div class="project-year">2023</div>
-                                <div class="project-type">M&E Evaluation</div>
-                            </div>
-                        </div>
-                        <h3>Nutrition Program Endline Evaluation</h3>
-                        <p class="project-description">Led the endline evaluation of a 2-year nutrition program, including survey design, data collection coordination, statistical analysis, and final report for EU donor.</p>
-                        <p class="project-metrics">2,400 households surveyed · 12 indicators</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Survey Design</span>
-                            <span class="project-tag">SPSS</span>
-                            <span class="project-tag">Evaluation</span>
-                            <span class="project-tag">EU Reporting</span>
-                        </div>
-                    </div>
-
-                    <div class="project-card reveal-on-scroll">
-                        <div class="project-header">
-                            <div class="project-icon">🗄️</div>
-                            <div class="project-meta">
-                                <div class="project-year">2022</div>
-                                <div class="project-type">Data Management</div>
-                            </div>
-                        </div>
-                        <h3>Beneficiary Database Redesign</h3>
-                        <p class="project-description">Redesigned the organization's beneficiary tracking system using Excel and Power Query, reducing duplicate entries by 40% and enabling cross-program analysis.</p>
-                        <p class="project-metrics">15,000+ records · 40% error reduction</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Excel</span>
-                            <span class="project-tag">Power Query</span>
-                            <span class="project-tag">Data Cleaning</span>
-                            <span class="project-tag">Database</span>
-                        </div>
-                    </div>
-
-                    <div class="project-card reveal-on-scroll">
-                        <div class="project-header">
-                            <div class="project-icon">📚</div>
-                            <div class="project-meta">
-                                <div class="project-year">2021</div>
-                                <div class="project-type">Research & Analysis</div>
-                            </div>
-                        </div>
-                        <h3>Youth Education Impact Study</h3>
-                        <p class="project-description">Contributed to a mixed-methods impact study examining learning outcomes for out-of-school youth. Managed quantitative data collection and produced data visualizations for the final report.</p>
-                        <p class="project-metrics">5,000 students · 4 districts</p>
-                        <div class="project-tags">
-                            <span class="project-tag">Mixed Methods</span>
-                            <span class="project-tag">Data Collection</span>
-                            <span class="project-tag">Visualization</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- EDUCATION -->
-        <section id="education">
-            <div class="container">
-                <div class="section-header">
-                    <p class="section-label">05 · Academic Background</p>
-                    <h2>Education & Certifications</h2>
-                    <div class="amber-rule"></div>
-                </div>
-
-                <div class="education-item reveal-on-scroll">
-                    <div class="education-icon">🎓</div>
-                    <div class="education-content">
-                        <h3>Certificate in Data Analysis <span class="education-badge">Current</span></h3>
-                        <p class="education-institution">Online Learning Platform</p>
-                        <p class="education-period">2024 – Present</p>
-                        <p class="education-note">Currently enrolled — Python, SQL, Tableau</p>
-                    </div>
-                </div>
-
-                <div class="education-item reveal-on-scroll">
-                    <div class="education-icon">🎓</div>
-                    <div class="education-content">
-                        <h3>Master of Development Studies</h3>
-                        <p class="education-institution">University (Your Country)</p>
-                        <p class="education-period">2017 – 2019</p>
-                        <p class="education-note">Thesis: Evaluating Community-Based Health Interventions</p>
-                    </div>
-                </div>
-
-                <div class="education-item reveal-on-scroll">
-                    <div class="education-icon">🎓</div>
-                    <div class="education-content">
-                        <h3>Bachelor of Social Sciences</h3>
-                        <p class="education-institution">University (Your Country)</p>
-                        <p class="education-period">2013 – 2017</p>
-                        <p class="education-note">Major: Sociology | Minor: Statistics</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT -->
-        <section id="contact">
-            <div class="container">
-                <div class="section-header">
-                    <p class="section-label">06 · Let's Connect</p>
-                    <h2>Open to Opportunities</h2>
-                    <div class="amber-rule"></div>
-                </div>
-
-                <p class="contact-intro">I am actively seeking roles in M&E, MEAL, or data analysis — particularly in development, humanitarian, or public health contexts. I am also open to freelance evaluation assignments and data analysis projects.</p>
-
-                <div class="contact-items">
-                    <div class="contact-item">
-                        <div class="contact-item-icon">✉️</div>
-                        <p class="contact-item-label">Email</p>
-                        <a href="mailto:your.email@example.com">
-                            <p class="contact-item-value">your.email@example.com</p>
-                        </a>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-item-icon">💼</div>
-                        <p class="contact-item-label">LinkedIn</p>
-                        <a href="https://linkedin.com/in/yourprofile" target="_blank" rel="noopener noreferrer">
-                            <p class="contact-item-value">linkedin.com/in/yourprofile</p>
-                        </a>
-                    </div>
-
-                    <div class="contact-item">
-                        <div class="contact-item-icon">📍</div>
-                        <p class="contact-item-label">Location</p>
-                        <p class="contact-item-value">Your City, Your Country</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- FOOTER -->
-        <footer>
-            <p>© 2025 Your Name · M&E Specialist & Data Analyst</p>
-            <p>Built with purpose · NGO Sector since 2019</p>
-        </footer>
+        </div>
     </div>
 
+    <!-- About & Contact Page -->
+    <div id="about" class="page">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Professional Profile</p>
+                <h2>About Me</h2>
+            </div>
+
+            <div class="about-content">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Crect fill='%23E8F4F8' width='300' height='300'/%3E%3Ctext x='50%25' y='50%25' font-size='24' fill='%23004B87' text-anchor='middle' dy='.3em'%3EProfile Photo%3C/text%3E%3C/svg%3E" alt="Saw Linn Linn Nyein" class="about-photo">
+                <div class="about-text">
+                    <h3>Professional Background</h3>
+                    <p>
+                        I am a dedicated MEAL (Monitoring, Evaluation, Accountability, and Learning) professional with 5+ years of experience in designing and implementing robust monitoring and evaluation systems for NGO programs. My expertise spans across emergency response, health, WASH, and community development sectors.
+                    </p>
+                    <p>
+                        Currently transitioning into data analysis, I combine my deep understanding of program evaluation with advanced data management and visualization skills. I am proficient in Power BI, Excel, SPSS, and various data collection tools, enabling me to transform raw data into actionable insights for evidence-based decision-making.
+                    </p>
+                    <p>
+                        My passion lies in strengthening data use culture within organizations and communities, ensuring that evidence drives program quality and impact. I am committed to continuous learning and staying updated with the latest trends in data analytics and digital tools.
+                    </p>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <label>Experience</label>
+                            <p>5+ Years in NGO Sector</p>
+                        </div>
+                        <div class="highlight-item">
+                            <label>Expertise</label>
+                            <p>MEAL & Data Analysis</p>
+                        </div>
+                        <div class="highlight-item">
+                            <label>Projects</label>
+                            <p>12+ Programs Evaluated</p>
+                        </div>
+                        <div class="highlight-item">
+                            <label>Coverage</label>
+                            <p>5 Countries Worked In</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Section -->
+            <div style="margin-top: 80px; padding-top: 40px; border-top: 2px solid #E8F4F8;">
+                <div class="section-header" style="margin-bottom: 40px;">
+                    <p class="section-label">Get In Touch</p>
+                    <h2>Contact Information</h2>
+                </div>
+
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <strong>📧 Email:</strong>
+                        <a href="mailto:linnyein.LN@outlook.com">linnyein.LN@outlook.com</a>
+                    </div>
+
+                    <div class="contact-item">
+                        <strong>📍 Location:</strong>
+                        <span>Yangon, Myanmar</span>
+                    </div>
+                    <div class="contact-item">
+                        <strong>💼 LinkedIn:</strong>
+                        <a href="https://www.linkedin.com/in/saw-linn-linn-nyein-06644730a" target="_blank">View Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Experience Page -->
+    <div id="experience" class="page">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Professional Journey</p>
+                <h2>Work Experience</h2>
+            </div>
+
+            <!-- M&E Supervisor -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3>M&E Supervisor</h3>
+                        <div class="experience-org">Transformative Resilience Fostering (TRF)</div>
+                    </div>
+                    <div class="experience-date">Oct 2025 - Present</div>
+                </div>
+
+                <div class="experience-section">
+                    <h4>📋 What I Did</h4>
+                    <ul>
+                        <li>Designed and managed the SCLR approved project's M&E framework, database, and data visualization</li>
+                        <li>Reviewed proposals submitted by community groups to support microgrants</li>
+                        <li>Conducted data analysis and reporting to measure program impact</li>
+                        <li>Strengthened data use and learning among community groups, CF alumni and Local Partners</li>
+                    </ul>
+                </div>
+
+                <div class="experience-section">
+                    <h4>🛠️ Skills & Tools Used</h4>
+                    <ul>
+                        <li>M&E Framework Design, Power BI, Database Management, Data Analysis, Proposal Review</li>
+                        <li>Excel (Advanced), Data Visualization, Reporting, Community Engagement</li>
+                    </ul>
+                </div>
+
+                <div class="experience-section">
+                    <h4>📊 Impact & Results</h4>
+                    <p style="color: #999; font-style: italic;">[Add your key achievements and measurable results here]</p>
+                </div>
+            </div>
+
+            <!-- MEAL Officer -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3>MEAL Officer</h3>
+                        <div class="experience-org">Overseas Irrawaddy Association (OIA)</div>
+                    </div>
+                    <div class="experience-date">Jun 2024 - Oct 2025</div>
+                </div>
+
+                <div class="experience-section">
+                    <h4>📋 What I Did</h4>
+                    <ul>
+                        <li>Led and coordinated MEAL systems, including logframes, ToC, M&E plans, and output tracking</li>
+                        <li>Served as MEAL focal point, overseeing M&E staff and supporting program quality and accountability</li>
+                        <li>Designed monitoring tools, managed databases, analyzed data, and produced regular reports</li>
+                        <li>Facilitated learning reviews and capacity building for staff and partners</li>
+                    </ul>
+                </div>
+
+                <div class="experience-section">
+                    <h4>🛠️ Skills & Tools Used</h4>
+                    <ul>
+                        <li>Logframe & Theory of Change, KoBoToolbox, Excel, Power BI, Data Analysis</li>
+                        <li>Team Leadership, Capacity Building, Donor Reporting, Learning Facilitation</li>
+                    </ul>
+                </div>
+
+                <div class="experience-section">
+                    <h4>📊 Impact & Results</h4>
+                    <p style="color: #999; font-style: italic;">[Add your key achievements and measurable results here]</p>
+                </div>
+            </div>
+
+            <!-- Database and M&E Officer -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3>Database and M&E Officer</h3>
+                        <div class="experience-org">Karen Baptist Convention Social Mission (KBC-SM)</div>
+                    </div>
+                    <div class="experience-date">Dec 2022 - Dec 2023</div>
+                </div>
+
+                <div class="experience-section">
+                    <h4>📋 What I Did</h4>
+                    <ul>
+                        <li>Developed and maintained secure systems to support the RISE_SRHR project</li>
+                        <li>Managed project data workflows, including data collection, cleaning, analysis, and reporting</li>
+                        <li>Ensured data accuracy, security, and compliance with project requirements</li>
+                        <li>Supported monitoring and reporting needs for program implementation</li>
+                    </ul>
+                </div>
+
+                <div class="experience-section">
+                    <h4>🛠️ Skills & Tools Used</h4>
+                    <ul>
+                        <li>Microsoft Access, Excel VBA, Power Query, SPSS, Data Security</li>
+                        <li>Database Design, Data Cleaning, SRHR Program Knowledge, Compliance</li>
+                    </ul>
+                </div>
+
+                <div class="experience-section">
+                    <h4>📊 Impact & Results</h4>
+                    <p style="color: #999; font-style: italic;">[Add your key achievements and measurable results here]</p>
+                </div>
+            </div>
+
+            <!-- M&E Officer MRCS -->
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3>Monitoring & Evaluation Officer</h3>
+                        <div class="experience-org">Myanmar Red Cross Society (MRCS)</div>
+                    </div>
+                    <div class="experience-date">Oct 2020 - Dec 2022</div>
+                </div>
+
+                <div class="experience-section">
+                    <h4>📋 What I Did</h4>
+                    <ul>
+                        <li>Developed PMER frameworks, guidelines, and indicators for the CBHR project</li>
+                        <li>Built M&E capacity of township and community-level staff aligned with project logframes</li>
+                        <li>Monitored field implementation and produced regular progress reports</li>
+                        <li>Served as Acting Project Manager for three months and supported finance functions</li>
+                    </ul>
+                </div>
+
+                <div class="experience-section">
+                    <h4>🛠️ Skills & Tools Used</h4>
+                    <ul>
+                        <li>M&E Framework Development, Capacity Building, Project Management</li>
+                        <li>Excel, Data Analysis, Report Writing, Humanitarian Response</li>
+                    </ul>
+                </div>
+
+                <div class="experience-section">
+                    <h4>📊 Impact & Results</h4>
+                    <p style="color: #999; font-style: italic;">[Add your key achievements and measurable results here]</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skills & Education Page -->
+    <div id="skills" class="page">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Competencies & Learning</p>
+                <h2>Skills & Education</h2>
+            </div>
+
+            <!-- Skills Section -->
+            <div class="skill-category">
+                <h3><span class="skill-category-icon">📋</span>MEAL & M&E</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <label>M&E Framework Design & Implementation</label>
+                        <span class="skill-percentage">95%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 95%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <label>Logical Framework & Theory of Change</label>
+                        <span class="skill-percentage">93%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 93%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <label>Baseline & Endline Surveys</label>
+                        <span class="skill-percentage">92%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 92%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <label>Donor Reporting & Accountability</label>
+                        <span class="skill-percentage">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><span class="skill-category-icon">📊</span>Data Management & Analysis</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <label>Microsoft Excel (Advanced: VBA, Power Query, Power Pivot)</label>
+                        <span class="skill-percentage">92%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 92%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <label>Power BI & Looker Studio</label>
+                        <span class="skill-percentage">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <label>Microsoft Access & MySQL</label>
+                        <span class="skill-percentage">88%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 88%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <label>SPSS & MAXQDA (Qualitative Analysis)</label>
+                        <span class="skill-percentage">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><span class="skill-category-icon">☁️</span>Digital Data Collection & Cloud Systems</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <label>KoBoToolbox (Advanced)</label>
+                        <span class="skill-percentage">90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 90%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <label>Google Forms & Microsoft Forms</label>
+                        <span class="skill-percentage">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <label>Microsoft 365 Administration</label>
+                        <span class="skill-percentage">88%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 88%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <label>Google Workspace & Cloud Collaboration</label>
+                        <span class="skill-percentage">85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 85%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="skill-category">
+                <h3><span class="skill-category-icon">🗺️</span>GIS & Mapping</h3>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <label>QGIS</label>
+                        <span class="skill-percentage">75%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 75%;"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <label>Google Earth Pro</label>
+                        <span class="skill-percentage">80%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-progress" style="width: 80%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education Section -->
+            <div style="margin-top: 60px; padding-top: 40px; border-top: 2px solid #E8F4F8;">
+                <div class="section-header" style="margin-bottom: 40px;">
+                    <p class="section-label">Learning & Development</p>
+                    <h2>Education & Certifications</h2>
+                </div>
+
+                <!-- Diploma -->
+                <div class="education-item">
+                    <h3>Diploma in Business Intelligence and Data Analyst</h3>
+                    <div class="education-org">Matrix College</div>
+                    <div class="education-date">June - September 2025</div>
+                    <p>Comprehensive training in data analysis, business intelligence, and data visualization tools including Power BI, Excel advanced functions, and data storytelling techniques.</p>
+                </div>
+
+                <!-- Bachelor's -->
+                <div class="education-item">
+                    <h3>Bachelor of Community Health</h3>
+                    <div class="education-org">University of Community Health</div>
+                    <div class="education-date">December 2014 - January 2019</div>
+                    <p>Foundation in public health, community development, and health program management with emphasis on monitoring and evaluation of health interventions.</p>
+                </div>
+
+                <!-- Professional Trainings -->
+                <div style="margin-top: 40px;">
+                    <h3 style="font-size: 18px; color: #001A4D; margin-bottom: 20px;">Professional Trainings</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                        <div class="training-tag">Advanced Excel for Data Analysis</div>
+                        <div class="training-tag">Power BI Fundamentals</div>
+                        <div class="training-tag">SPSS Statistical Analysis</div>
+                        <div class="training-tag">Qualitative Data Analysis with MAXQDA</div>
+                        <div class="training-tag">KoBoToolbox Mobile Data Collection</div>
+                        <div class="training-tag">GIS Basics with QGIS</div>
+                        <div class="training-tag">Logical Framework Approach</div>
+                        <div class="training-tag">Theory of Change Development</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projects Page -->
+    <div id="projects" class="page">
+        <div class="container">
+            <div class="section-header">
+                <p class="section-label">Portfolio Showcase</p>
+                <h2>Data Analysis Projects</h2>
+            </div>
+
+            <div class="project-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-icon">📊</div>
+                    <h3>WASH Program Impact Dashboard</h3>
+                    <p>Designed and developed a comprehensive Power BI dashboard for real-time monitoring of WASH program implementation across multiple regions with 50,000+ beneficiaries.</p>
+                    <div class="project-tools">
+                        <span class="tool-tag">Power BI</span>
+                        <span class="tool-tag">Excel</span>
+                        <span class="tool-tag">SQL</span>
+                    </div>
+                    <div class="project-meta">
+                        <span>📈 Data Type: Demo Data</span>
+                        <span>✓ Completed</span>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-icon">📈</div>
+                    <h3>SRHR Program Analysis</h3>
+                    <p>Conducted comprehensive baseline and endline analysis for SRHR program using mixed methods approach combining quantitative and qualitative data analysis.</p>
+                    <div class="project-tools">
+                        <span class="tool-tag">SPSS</span>
+                        <span class="tool-tag">MAXQDA</span>
+                        <span class="tool-tag">Excel</span>
+                    </div>
+                    <div class="project-meta">
+                        <span>📈 Data Type: Demo Data</span>
+                        <span>✓ Completed</span>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-icon">💾</div>
+                    <h3>Integrated Database System</h3>
+                    <p>Developed and maintained secure database system for multi-project data management with automated workflows and data quality checks using Microsoft Access and VBA.</p>
+                    <div class="project-tools">
+                        <span class="tool-tag">Access</span>
+                        <span class="tool-tag">VBA</span>
+                        <span class="tool-tag">Excel</span>
+                    </div>
+                    <div class="project-meta">
+                        <span>📈 Data Type: Demo Data</span>
+                        <span>✓ Completed</span>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card">
+                    <div class="project-icon">🗺️</div>
+                    <h3>Community Health Facility Mapping</h3>
+                    <p>Created GIS-based mapping analysis of health facilities coverage and accessibility across 5 countries using QGIS and spatial analysis techniques.</p>
+                    <div class="project-tools">
+                        <span class="tool-tag">QGIS</span>
+                        <span class="tool-tag">Google Earth</span>
+                        <span class="tool-tag">Excel</span>
+                    </div>
+                    <div class="project-meta">
+                        <span>📈 Data Type: Demo Data</span>
+                        <span>✓ Completed</span>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card">
+                    <div class="project-icon">📱</div>
+                    <h3>Mobile Data Collection System</h3>
+                    <p>Designed and implemented KoBoToolbox mobile data collection system for 12+ programs with automated data validation, cleaning, and Power BI visualization.</p>
+                    <div class="project-tools">
+                        <span class="tool-tag">KoBoToolbox</span>
+                        <span class="tool-tag">Power BI</span>
+                        <span class="tool-tag">Excel</span>
+                    </div>
+                    <div class="project-meta">
+                        <span>📈 Data Type: Demo Data</span>
+                        <span>✓ Completed</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Saw Linn Linn Nyein. All rights reserved. | MEAL & Data Analysis Professional</p>
+        </div>
+    </footer>
+
     <script>
-        // Smooth scrolling for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
-                }
-            });
-        });
+        function showPage(pageId, event) {
+            if (event) {
+                event.preventDefault();
+            }
 
-        // Update active nav link on scroll
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sections = document.querySelectorAll('section[id]');
-
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
-                if (pageYOffset >= sectionTop - 200) {
-                    current = section.getAttribute('id');
-                }
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => {
+                page.classList.remove('active');
             });
 
+            // Show selected page
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+
+            // Update active nav link
+            const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
             });
-        });
 
-        // Reveal on scroll animation
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
 
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('revealed');
-                }
-            });
-        }, observerOptions);
+            // Close mobile menu
+            const navMenu = document.getElementById('navMenu');
+            if (navMenu) {
+                navMenu.classList.remove('active');
+            }
 
-        document.querySelectorAll('.reveal-on-scroll').forEach(el => {
-            observer.observe(el);
-        });
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
 
-        // Animate skill bars on scroll
-        const skillBars = document.querySelectorAll('.skill-fill');
-        const skillObserver = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.width = entry.target.parentElement.parentElement.querySelector('.skill-level').textContent;
-                    skillObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.5 });
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
 
-        skillBars.forEach(bar => {
-            bar.style.width = '0';
-            skillObserver.observe(bar);
+        // Set initial active link
+        document.addEventListener('DOMContentLoaded', function() {
+            const homeLink = document.querySelector('[onclick*="home"]');
+            if (homeLink) {
+                homeLink.classList.add('active');
+            }
         });
     </script>
 </body>
